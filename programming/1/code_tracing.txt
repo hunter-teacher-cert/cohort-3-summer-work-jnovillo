@@ -1,0 +1,39 @@
+// Go through the first word character by character without displaying anything
+// Precondition: someString does not begin with spaces. Words are separated by spaces.
+// Thus, someString in position 0 is not a space char.
+int i = 0;
+while ( someString . charAt( i ) != ' ‘)
+{
+  i++ ;
+}
+// Postcondition: someString in position i IS a space.
+// Go through all the spaces after the first word
+while (someString . charAt( i ) == ’ ‘)
+{
+  i++ ;
+}
+// Postcondition: someString in position i IS NOT a space.
+// Go through the second word character by character and display each character.
+// Precondition: someString[ i ] is the first letter of the second word
+while (someString [ i ] != ’ ’) // This only works for sentences of three words or more. Try to fix it!
+{
+                 System.out.print( someString.charAt ( i ) );
+  i++ ;
+}
+
+
+// Trace diagram
+
+The dog barks.
+
+i     char   loop
+0     T      first while
+1     h      first while
+2     e      first while
+3     _      second while
+4     d      third while
+5     o      third while
+6     g      third while
+
+
+PRINT: dog
