@@ -1,0 +1,25 @@
+Chapter 4 - Exercise 1 
+
+The point of this exercise is to practice reading code and to make sure that you understand the flow of execution through a program with multiple methods.
+
+1. What is the output of the following program? Be precise about where there are spaces and where there are newlines.
+Hint: Start by describing in words what ping and baffle do when they are invoked.
+
+The output of the program is:
+No, I wug.
+You wugga wug.
+I wug.
+
+Method ping prints a period (.) and add a new line after the text.
+Method baffle prints "wug", it does not add a new line, and it calls method ping.
+
+2. Draw a stack diagram that shows the state of the program the first time ping is invoked.
+
+main[]
+zoop[]
+baffle[]
+ping[]
+
+3. What happens if you invoke baffle(); at the end of the ping method? (We will see why in the next chapter.)
+
+It creates an infinite recursion.
