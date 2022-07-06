@@ -3,7 +3,7 @@ import java.util.*;
 
 /**
  * Array2DPractice by Team LucidThinkeren
- * Jessica Novillo 
+ * Jessica Novillo Argudo
  * collaborators: Saranii Muller, Jerusha Theobald, Patti Elfers
  */
 
@@ -185,7 +185,24 @@ public class Array2DPractice
   */
   public static void explodeSquare( char[][] board, int row, int col )
   {
-    /* YOUR AWESOME CODE HERE */
+    //first loop: start in row -1 (inital value - the start) keep going to i is less tha or equal to row +1 - this is the stop point , then increment value until stop point is reached 
+    for(int i = row-1; i <= row+1; i++){ 
+      //copntinue the code if i is greater than or equal to zero AND if i less than the length of the board. Prevents from going out of bounds
+      if(i >= 0 && i < board.length){ 
+        // this loop is the same as for the rows but for the columns
+        for(int j = col-1; j <= col+1; j++){ 
+          //out of bounds loop for the columns
+          if(j >= 0 && j < board[row].length){
+            //following states that if i and j are as indicated in the main call the char in i and j will be same unless meeting conditions above. If not given chars from main then will change chars to x from original
+            if (i == row && j == col)
+              continue;
+            else{
+              board[i][j] = 'X';
+            }
+          }
+        } 
+      }
+    } 
   }
 
   /**
@@ -193,9 +210,19 @@ public class Array2DPractice
      explode each square that contains the char c (using the above
      definition of exploding).
 
-     Example:
 
+     Example:
      Given the array
+     qqzqq
+     qqqqq
+     qqqqq
+     qqqqq
+     qzqqq
+     qqqqq
+     qqqqz
+     ...
+     explodeAllchar(board,'z')
+     will change board to
      qXzXq
      qXXXq
      qqqqq
@@ -204,12 +231,23 @@ public class Array2DPractice
      XXXXX
      qqqXz
 
+
      explodeAllchar(board,'z') will change board to:
   */
+  //                 name of method  characters in the positions on the board as defined by variable char c (c is whatever is named in this case z) so we are doing multiple boxes instead of just one  
   public static void explodeAllChar(char[][] board, char c)
   {
-    /* YOUR AWESOME CODE HERE */
+   //first loop: starts at 0 0 go until end of board llength increment up by one
+    for(int i = 0; i < board.length; i++){ 
+        // this loop is the same as for the rows but for the columns
+      for(int j = 0; j < board[i].length; j++){ 
+        if (board[i][j] == c){
+          explodeSquare(board, i, j);
+        }
+      } 
+      } 
   }
+  
 
 
   /**
@@ -257,7 +295,16 @@ public class Array2DPractice
   */
   public static void downString( char[][] board, int row, int col, String word )
   {
-    /* YOUR AWESOME CODE HERE */
+    int pos;
+    int wordLength = word.length();
+    for(int i = 0; i < board.length; i++){
+      if (i >= row && col < board[i].length && col >= 0){
+        pos = i - row;
+        if (pos < wordLength){
+          board[i][col] = word.charAt(pos);
+        }
+      }
+    }
   }
 
 
@@ -265,20 +312,53 @@ public class Array2DPractice
   {
     //following line creates board w/variable b of 5 rows, 10 columns and each array position contains the character z
     char[][] b = buildBoard(5,10,'z');
+    
     //next line should print out the contents of array b
-    System.out.println("2D Array: ");
+    System.out.println("*** 2D Array ***");
     printBoard(b);
+    System.out.println();
+
+    // Executing copyBoard
     char[][] bCopy = copyBoard(b);
-    System.out.println("Result of copyBoard: ");
+    System.out.println("*** Result of copyBoard ***");
     printBoard(bCopy);
-    copyBoard(b);
-    System.out.println("Set row board:");
+    System.out.println();
+
+    // Executing setRow
+    System.out.println("*** Set row board ***");
     setRow(b, 2, '@');
-    /*
-      Note, you can directly set elements in the board
-      using array notation like b[3][2]='z' and you
-      can use array notation to also access individual
-      elements
-    */
+    System.out.println();
+
+    // Executing explodeSquare
+    System.out.println("*** Explode square ***");
+    b = buildBoard(4,5,'Q');
+    explodeSquare(b, 1, 1);
+    printBoard(b);
+    System.out.println();
+
+    // Executing explodeAllChar
+    System.out.println("*** Explode all ***");
+    System.out.println("Initial array:");
+    b = buildBoard(7, 5,'Q');
+    b[1][1] = 'z';
+    b[3][3] = 'z';
+    printBoard(b);
+    System.out.println("After exploding all characters 'z':");
+    explodeAllChar(b, 'z');
+    printBoard(b);
+    System.out.println();
+
+    // Executing downString
+    System.out.println("*** Down String ***");
+    b = buildBoard(7, 6, 'x');
+    System.out.println("Initial array:");
+    printBoard(b);
+    downString(b, 1, 1, "HELLO");
+    System.out.println("Print HELLO:");
+    printBoard(b);
+    downString(b, 4, 3, "WORLD");
+    System.out.println("Print WORLD:");
+    printBoard(b);
+
   }
 }
