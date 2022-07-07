@@ -126,22 +126,62 @@ public class Cgol
     }    
   }
 
+
+  // pause for n milliseconds
+  public static void delay(int n)
+  {
+    try {
+      Thread.sleep(n);
+    }
+    catch(InterruptedException e) {}
+  }
+
+  // Set alive celss for a block
+  public static void block(char[][] board, int x, int y, char value){
+    setCell(board, x, y, value);
+    setCell(board, x, x+1, value);
+    setCell(board, x+1, y, value);
+    setCell(board, x+1, y+1, value);
+  }
+
+  // Set alive cells for a light-weight spaceship
+  public static void lwss(char[][] board, int x, int y, char value){
+    setCell(board, x, y, value);
+    setCell(board, x, y+1, value);
+    setCell(board, x+1, y-1, value);
+    setCell(board, x+1, y, value);
+    setCell(board, x+1, y+1, value);
+    setCell(board, x+1, y+2, value);
+    setCell(board, x+2, y-1, value);
+    setCell(board, x+2, y, value);
+    setCell(board, x+2, y+2, value);
+    setCell(board, x+2, y+3, value);
+    setCell(board, x+3, y+1, value);
+    setCell(board, x+3, y+2, value);
+  }
   
   public static void main( String[] args )
   {
-    
     char[][] board;
-    
-    // Creates a new board
-    board = createNewBoard(25, 25);
-    // Randomically sets cells alive
-    setAliveCells(board);
-    
-    for (int i=0; i <= 10; i++){
+    board = createNewBoard(26, 26);
+
+    // block sets a block of alive cells
+    // block(board, 1, 1, 'X');
+    // block(board, 1, 10, 'X');
+    // block(board, 10, 1, 'X');
+    // block(board, 10, 10, 'X');
+
+    // lwss sets alive cells for a light-weight spaceship
+    lwss(board, 1, 3, 'X');
+
+    // print generation boards with animation
+    System.out.print("\033[2J");
+    for (int i=0; i <= 100; i++){
+      System.out.print("[0;0H\n");
       System.out.println("Gen " + i + ":");
       printBoard(board);
-      System.out.println("--------------------------\n\n"); 
       board = generateNextBoard(board);
+      delay(100);
     }
     
   }//end main()
