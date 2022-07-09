@@ -43,14 +43,13 @@ public class Rational
   // if an invalid denominator is attempted, should print a message and set the number to 0/1
   public Rational( int n, int d )
   {
-    /* YOUR ELEGANT CODE HERE */
+    
     _numerator = n;
     if(d != 0){
       _denominator = d;
     } else {
-      System.out.println("invalid denominator setting to 0/1");
-      
-      _numerator = 0;  //TODO try this with Rational() 
+      System.out.println("Invalid denominator setting to 0/1");
+      _numerator = 0;
       _denominator = 1;
     }
     
@@ -61,7 +60,6 @@ public class Rational
   // returns a string representation of the rational number (formatting of your choice)
   public String toString()
   {
-    /* YOUR ELEGANT CODE HERE */
     return(_numerator + "/" + _denominator);
   }
 
@@ -91,31 +89,33 @@ public class Rational
   // divide
   // same as multiply, except operation is division
   public void divide( Rational r )
-  { //TODO check if not dividing by 0
-    if(r._numerator==0){
+  {
+    
+    if( r._numerator == 0 ){
       System.out.println("Invalid, cannot divide by 0");
-    }else{
-    _numerator *= r._denominator;
-    _denominator *= r._numerator;
+    } else{
+      _numerator *= r._denominator;
+      _denominator *= r._numerator;
     }
+    
   }
  
-
- public void reduce(){
-     for(int x=_numerator; x>1; x--){
-        if(_numerator%x==0 && _denominator%x==0){
-          //System.out.println("Is divisible by "+ x);
+  // Extra method
+  public void reduce(){
+    for(int x=_numerator; x>1; x--){
+      if(_numerator%x==0 && _denominator%x==0){
           _numerator /= x;
           _denominator /= x;
-        }
-     }
- }
-    
- public boolean equals( Rational other ){
-   other.simplify();
-   this.reduce();
-   return (_numerator == other._numerator &&
-          _denominator == other._denominator);
+      }
+    }
+  }
+
+  // Extra method
+  public boolean equals( Rational other ){
+    other.reduce();
+    this.reduce();
+    return (_numerator == other._numerator &&
+            _denominator == other._denominator);
  }
 
 

@@ -1,13 +1,14 @@
 /**
  * class Driver
  * tester class for class Rational
+ * Jessica Novillo Argudo
+ * collaborators: Adam Prado, Qianhui Vanessa Zou, Maxwell Yearwood
  */
 
 public class Driver
 {
   public static void main( String[] args )
   {
-    //cut/paste this leading comment bar down, one line at a time, as you test...
 
       Rational r = new Rational( 3, 7 );
       Rational s = new Rational();
@@ -30,32 +31,39 @@ public class Driver
       System.out.print( r + " * " + t + " = ");  
       r.multiply(t);
       System.out.println(r);
+      
       r = new Rational( 3, 7 );
-    
       System.out.print( r + " / " + t + " = ");
       r.divide(t);
-
+      System.out.println(r);
+    
+      // Testing when division by 0
       r = new Rational( 3, 7 );
       t = new Rational( 0, 7 );
       System.out.print( r + " / " + t + " = ");
       r.divide(t);
       System.out.println(r);
-      System.out.println();
+
+      // Reduce
       System.out.println("x starts as " + x);
-      x.simplify();
-      System.out.println("x simplified is: " +  x );
-      System.out.println();
+      x.reduce();
+      System.out.println("x reduced is: " +  x );
+
       x = new Rational( 42  , 36);
       System.out.println("x starts as " + x);
-      x.simplify();
-      System.out.println("x simplified is: " +  x );
+      x.reduce();
+      System.out.println("x reduced is: " +  x );
 
-      System.out.println();
-      x = new Rational( 2  , 4);
-      w = new Rational( 3  , 6);
+      // Equals
+      x = new Rational( 2, 4 );
+      w = new Rational( 3, 6 );
+
+      if (x.equals(w)) {
+        System.out.println(x + " and " + w + " are equal");
+      } else {
+        System.out.println(x + " and " + w + " are not equal");
+      }
       
-      System.out.println(x.equals(w));
-
   }
 
 }//end class
