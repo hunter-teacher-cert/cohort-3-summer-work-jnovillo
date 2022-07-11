@@ -1,6 +1,6 @@
 /**
  * SuperArray by Team MarvelvsDC
- * First Last
+ * Jessica Novillo Argudo
  * collaborators: First Last, First Last
  */
 
@@ -38,22 +38,23 @@ public class SuperArray
   //overloaded constructor -- allows specification of initial capacity
   public SuperArray( int size )
   {
+    
     //init underlying/inner storage of specified capacity
-    /* YOUR SIMPLE+SMART CODE HERE */
-
     //init instance vars
-    /* YOUR SIMPLE+SMART CODE HERE */
+    data = new int[ size ];
+    numberElements = 0;
 
   }
 
   //default constructor -- initializes capacity to 10
   public SuperArray()
   {
+    
     //init underlying/inner storage of capacity 10
-        /* YOUR SIMPLE+SMART CODE HERE */
-
     //init instance vars
-        /* YOUR SIMPLE+SMART CODE HERE */
+    data = new int[ 10 ];
+    numberElements = 0;
+  
   }
 
 
@@ -61,6 +62,9 @@ public class SuperArray
   public void add( int value )
   {
     // test to see if we need to grow, then grow
+    if (data.length == numberElements){
+      grow();
+    }
     /**
        IMPORTANT:
        This is the first code that should run in this method
@@ -68,36 +72,43 @@ public class SuperArray
        Implement the rest of this method first,
        then only write this section once the rest is tested and working.
     */
-    /* YOUR SIMPLE+SMART CODE HERE */
 
+    /* YOUR SIMPLE+SMART CODE HERE */
     // add item
-    /* YOUR SIMPLE+SMART CODE HERE */
-
+    data[numberElements] = value;
 
     // increment numberElements
-    /* YOUR SIMPLE+SMART CODE HERE */
+    numberElements ++;
 
   }//end add()
 
 
   public boolean isEmpty()
   {
+    
     //return whether this SuperArray instance is empty
-    /* YOUR SIMPLE+SMART CODE HERE */
+    return numberElements == 0;
   }
 
 
   public int get(int index)
   {
+    
     //return item at index
-    /* YOUR SIMPLE+SMART CODE HERE */
+    return data[index];
+    
   }
 
 
   public String toString()
   {
     //return stringified version of this Object
-    /* YOUR SIMPLE+SMART CODE HERE */
+    String str = "";
+    for (int i=0; i<numberElements; i++){
+      str += data[i] + " ";
+    }
+
+    return str;
   }//end toString()
 
 
@@ -106,6 +117,7 @@ public class SuperArray
   //(helper method for debugging/development phase)
   public String debug()
   {
+    
     String s = "";
     s = "Size: " + this.data.length;
     s = s + " LastItem: " + numberElements + "  Data: ";
@@ -114,47 +126,69 @@ public class SuperArray
     }
     s = s + "\n";
     return s;
+    
   }//end debug()
 
 
   public void remove(int index)
   {
+    
     // shift items down to remove the item at index
-    /* YOUR SIMPLE+SMART CODE HERE */
+    for (int i=index; i<numberElements - 1; i++){
+      data[i] = data[i + 1];
+    }
 
-    // subtract fom numElements;
-    /* YOUR SIMPLE+SMART CODE HERE */
+    // set last element as 0
+    data[numberElements - 1] = 0;
+    
+    // subtract from numElements;
+    numberElements --;
+
   }
 
-
+  
   public void add(int index, int value)
   {
-    // see if there's enough room
-    /* YOUR SIMPLE+SMART CODE HERE */
+    
+    // if there is no more room in data
+    // then we call function grow to make the array larger
+    if (numberElements == data.length){
+      grow();
+    }
 
     // shift elements toward the end of the array
-    /* YOUR SIMPLE+SMART CODE HERE */
+    for (int i=numberElements; i> index; i--){
+      data[i] = data[i - 1];
+    }
 
     // insert new element
-    /* YOUR SIMPLE+SMART CODE HERE */
+    data[index] = value;
 
     // increment numElements
-    /* YOUR SIMPLE+SMART CODE HERE */
+    numberElements ++;
+
   }
 
 
   private void grow()
   {
-    // create a new array with extra space
-    // Q: How did you decide how much to increase capacity by?
-    /* YOUR SIMPLE+SMART CODE HERE */
+    // create a new array with 5 extra spaces
+    int[] newData = new int[numberElements + 5];
+
+    // Q: How did you decide how much to increase capacity by? 
+    // Directions on GitHub ask to make the new array 5 units larger.
 
     // copy over all the elements from the old array to the new one
-    /* YOUR SIMPLE+SMART CODE HERE */
+    for (int i=0; i<data.length; i++){
+      newData[i] = data[i];
+    }
 
     // point data to the new array
-    // Q: How does this look when illustrated using encapsulation diagram?
-    /* YOUR SIMPLE+SMART CODE HERE */
+    data = newData;
+    
+    // Q: How does this look when illustrated using encapsulation diagram
+    
   }//end grow()
 
 }//end class
+
