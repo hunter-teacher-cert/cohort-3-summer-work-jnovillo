@@ -237,18 +237,32 @@ public class Array2DPractice
   //                 name of method  characters in the positions on the board as defined by variable char c (c is whatever is named in this case z) so we are doing multiple boxes instead of just one  
   public static void explodeAllChar(char[][] board, char c)
   {
-   //first loop: starts at 0 0 go until end of board llength increment up by one
-    for(int i = 0; i < board.length; i++){ 
+    
+    // boardCopy is a copy of the argument board, it will help to put back the character c if it was exploded
+    char[][] boardCopy = copyBoard(board);
+
+   //first loop: starts at 0 0 go until end of boardCopy length increment up by one. boardCopy is used here because it  has all the character c in case one of the was exploded in the original board
+    for(int i = 0; i < boardCopy.length; i++){ 
         // this loop is the same as for the rows but for the columns
-      for(int j = 0; j < board[i].length; j++){ 
-        if (board[i][j] == c){
+      for(int j = 0; j < boardCopy[i].length; j++){ 
+        if (boardCopy[i][j] == c){
+          // Explode square in original board
           explodeSquare(board, i, j);
         }
       } 
+    } 
+    
+    // If a cell with char c was exploded, this code will put it back
+    for(int i = 0; i < boardCopy.length; i++){ 
+      for(int j = 0; j < boardCopy[i].length; j++){ 
+        if (boardCopy[i][j] == c && board[i][j] != c){
+          board[i][j] = c;
+        }
       } 
+    } 
+
   }
   
-
 
   /**
      Parameters:
@@ -342,6 +356,7 @@ public class Array2DPractice
     b = buildBoard(7, 5,'Q');
     b[1][1] = 'z';
     b[3][3] = 'z';
+    //b[1][2] = 'z'; // this was to test when two z were next to each other.
     printBoard(b);
     System.out.println("After exploding all characters 'z':");
     explodeAllChar(b, 'z');
