@@ -1,8 +1,9 @@
 /**
- * SuperArray by Team MarvelvsDC
+ * SuperArray by Team Room 8
  * Jessica Novillo Argudo
- * collaborators: First Last, First Last
+ * collaborators: Adam Prado, Qianhui Vanessa Zou, Maxwell Yearwood
  */
+
 
 /**
    SKELETON
@@ -62,7 +63,7 @@ public class SuperArray
   public void add( int value )
   {
     // test to see if we need to grow, then grow
-    if (data.length == numberElements){
+    if (data.length == numberElements){ 
       grow();
     }
     /**
@@ -119,7 +120,7 @@ public class SuperArray
   {
     
     String s = "";
-    s = "Size: " + this.data.length;
+    s = "Size: " + data.length;
     s = s + " LastItem: " + numberElements + "  Data: ";
     for (int i = 0; i < numberElements; i++) {
       s = s + data[i] + ", ";
@@ -139,7 +140,7 @@ public class SuperArray
     }
 
     // set last element as 0
-    data[numberElements - 1] = 0;
+    // data[numberElements - 1] = 0; // after discussing in class we do not need this line, since numberElements is the indicator of meaningful elements
     
     // subtract from numElements;
     numberElements --;
@@ -149,27 +150,32 @@ public class SuperArray
   
   public void add(int index, int value)
   {
-    
-    // if there is no more room in data
-    // then we call function grow to make the array larger
-    if (numberElements == data.length){
-      grow();
+
+    // check if index is not out of range. ex: large number like 2000 or negative numbers
+    if(index <= numberElements && index >= 0){
+      // if there is no more room in data
+      // then we call function grow to make the array larger
+      if (data.length == numberElements){
+        grow();
+      }
+  
+      // shift elements toward the end of the array
+      for (int i=numberElements; i> index; i--){
+        data[i] = data[i - 1];
+      }
+  
+      // insert new element
+      data[index] = value;
+  
+      // increment numElements
+      numberElements ++;
+    } else{
+      System.out.println("Out of range! Index is too large or negative, did not add element to list");
     }
-
-    // shift elements toward the end of the array
-    for (int i=numberElements; i> index; i--){
-      data[i] = data[i - 1];
-    }
-
-    // insert new element
-    data[index] = value;
-
-    // increment numElements
-    numberElements ++;
-
   }
+  
 
-
+  // make data grow if there is no more room
   private void grow()
   {
     // create a new array with 5 extra spaces
@@ -177,6 +183,7 @@ public class SuperArray
 
     // Q: How did you decide how much to increase capacity by? 
     // Directions on GitHub ask to make the new array 5 units larger.
+    // Also, it is more efficient to add 5 elements or more than do it 1 by 1
 
     // copy over all the elements from the old array to the new one
     for (int i=0; i<data.length; i++){
@@ -190,5 +197,17 @@ public class SuperArray
     
   }//end grow()
 
-}//end class
 
+  // set value to indicated index
+  public void set(int index, int value){
+
+    // check if index is not out of range. ex: large number like 2000 or negative numbers
+    if(index <= numberElements && index >= 0){
+      data[index] = value;
+    }else{
+      System.out.println("Out of range! Index is too large or negative, did not add element to list");
+    }
+    
+  }
+  
+}//end class
