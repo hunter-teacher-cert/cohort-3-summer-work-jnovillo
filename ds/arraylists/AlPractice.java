@@ -100,8 +100,6 @@ public class AlPractice{
       } 
     }
 
-
-
   }
 
 
@@ -120,8 +118,27 @@ public class AlPractice{
     
     ArrayList<Integer> sumList = new ArrayList<Integer>();
 
+    if (ListA.size() > ListB.size()){
+      for (int i=0; i<ListA.size(); i++){
+        if (i < ListB.size()){
+          sumList.add(ListA.get(i) + ListB.get(i));
+        }
+        else{
+          sumList.add(ListA.get(i));
+        }
+      }
+    }else{
+      for (int i=0; i<ListB.size(); i++){
+        if (i < ListA.size()){
+          sumList.add(ListA.get(i) + ListB.get(i));
+        }
+        else{
+          sumList.add(ListB.get(i));
+        }
+      }     
+    }
     
-    return null;//placeholder to compile.
+    return sumList;//placeholder to compile.
   }
 
   /** zipLists
@@ -168,6 +185,28 @@ public static void main(String[] args) {
     System.out.println("ArrayList:" + al);
     removeValue(al,5);
     System.out.println("ArrayList after remove all values equal to 5:\n" + al); 
+
+    // Test sumLists
+    ArrayList<Integer> al1 = new ArrayList<Integer>();
+    ArrayList<Integer> al2 = new ArrayList<Integer>();
+
+    al1.add(1);
+    al1.add(2);
+    al1.add(3);
+    al1.add(4);
+    al1.add(5);
+  
+    al2.add(10);
+    al2.add(20);
+    al2.add(30);
+    al2.add(40);
+    al2.add(50);
+
+    System.out.println("\nTesting sumLists:\n");
+    System.out.println("List 1:" + al1 + "\n");
+    System.out.println("List 2:" + al2 + "\n");
+    System.out.println("Sum of list 1 and list 2:" + sumLists(al1, al2));
+  
 
   }
 
