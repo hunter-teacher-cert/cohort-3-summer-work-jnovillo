@@ -1,0 +1,1 @@
+Store anything usuful.

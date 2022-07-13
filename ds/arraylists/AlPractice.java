@@ -3,17 +3,17 @@ import java.util.*;
 
 /** Methods to write
 
-Basic level:
+Basic level: DONE
 ------------
 public static ArrayList<Integer> buildRandomList(int size, int maxval)
 public static int sumOfList(ArrayList<Integer> dataList)
 
-Intermediate level:
+Intermediate level: DONE
 -------------------
 public static void swapElements(ArrayList<Integer> dataList, int indexA,int indexB)
 public static void removeValue(ArrayList<Integer> dataList, int valueToRemove)
 
-Challenge level:
+Challenge level: DONE
 -------------------
 public static ArrayList<Integer> sumLists(ArrayList<Integer>ListA,ArrayList<Integer>ListB)
 public static ArrayList<Integer> zipLists(ArrayList<Integer>ListA,ArrayList<Integer>ListB)
@@ -152,7 +152,29 @@ public class AlPractice{
   - The parameter ArrayLists should not be modified.
   */
   public static ArrayList<Integer> zipLists(ArrayList<Integer>ListA,ArrayList<Integer>ListB){
-    return null;//placeholder to compile.
+    
+    ArrayList<Integer> zipList = new ArrayList<Integer>();
+    
+    if (ListA.size() > ListB.size()){
+      for (int i=0; i<ListA.size(); i++){
+        if (i < ListB.size()){
+          zipList.add(ListA.get(i));
+          zipList.add(ListB.get(i));
+        }else{
+          zipList.add(ListA.get(i));
+        }
+      }
+    }else{
+      for (int i=0; i<ListB.size(); i++){
+        if (i < ListA.size()){
+          zipList.add(ListA.get(i));
+          zipList.add(ListB.get(i));
+        }else{
+          zipList.add(ListB.get(i));
+        }
+      }    
+    }
+    return zipList;//placeholder to compile.
   }
 
 
@@ -184,9 +206,9 @@ public static void main(String[] args) {
     al.set(3,5);
     System.out.println("ArrayList:" + al);
     removeValue(al,5);
-    System.out.println("ArrayList after remove all values equal to 5:\n" + al); 
+    System.out.println("\nArrayList after remove all values equal to 5:\n" + al); 
 
-    // Test sumLists
+    // Test sumLists: It also works when the arrays have different size
     ArrayList<Integer> al1 = new ArrayList<Integer>();
     ArrayList<Integer> al2 = new ArrayList<Integer>();
 
@@ -202,14 +224,13 @@ public static void main(String[] args) {
     al2.add(40);
     al2.add(50);
 
-    System.out.println("\nTesting sumLists:\n");
-    System.out.println("List 1:" + al1 + "\n");
-    System.out.println("List 2:" + al2 + "\n");
-    System.out.println("Sum of list 1 and list 2:" + sumLists(al1, al2));
-  
+    System.out.println("\nTesting sumLists:");
+    System.out.println("List 1:" + al1);
+    System.out.println("List 2:" + al2);
+    System.out.println("Sum of list 1 and list 2: " + sumLists(al1, al2));
 
+    // Test zipLists: It also works when the arrays have different size
+    System.out.println("\nZip list 1 and list 2: " + zipLists(al1, al2));
   }
-
-
 
 }
