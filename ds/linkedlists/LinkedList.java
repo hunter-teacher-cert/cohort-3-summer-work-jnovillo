@@ -1,28 +1,28 @@
+/**
+ * Driver - Node - LinkedList
+ * collaborators: Rachel Kaufman, Joel Bianchi, Latoya B, Jessica N
+ */
+
 import java.io.*;
 import java.util.*;
 
 /**
-For all attempted methods, make sensible decisions for error and
-edge cases (such as indexing out of bounds).
-
 Basic
 -----
-add(string value)
-get(int index);
-toString()
++ add(string value)
+- get(int index);
+- toString()
 
-
-Intermediate (at least add, size + one of the other two)
+Intermediate 
 ------------
-size()
-add(int index,String value)
-indexOf(String value);
-toArray()
-
+- size()
+- add(int index,String value)
+- indexOf(String value);
+- toArray()
 
 Challenge
 --------
-remove(int index);
+- remove(int index);
 */
 
 public class LinkedList{
@@ -33,29 +33,65 @@ public class LinkedList{
     head = null;
   }
 
-  /**
-  Parameters:
-  value - the new string to add to the list
-
-  Adds a new node containing value to the front of the list.
-  */
+  // add() adds a new node that points to the head, and makes the new node the new head
   public void add(String value){
 
+    //create a new node that points to the old head
+    Node front = new Node(value, head);
+
+    //make the new node the new head
+    head = front;
   }
 
-  /**
-  Returns the String in the node at location index.
-  */
-  public String get(int index){
-    return "";
+// get() returns the string at the node in the specified index
+  public String get(int targetIndex){
+
+    //create reference to help loop through list
+    Node walker = head;
+    
+    //go in a loop through each node until we reach the target index
+    for(int i=0; i<=targetIndex && walker != null; i++ ){
+      
+      //if we have reached the target index
+      if (i == targetIndex){
+        //return the data from the target
+        return walker.getData();
+      }
+      
+      //if (walker.getNext() != null) 
+      walker = walker.getNext();
+      
+    }
+    //return if we didn't find the target index
+    return "Value at index not found.";
   }
 
-  /**
-  Return a string representation of the list
-  */
+ // toString() returns a string version of the list
   public String toString(){
-    return "";
+    
+    //create a walker
+    Node walker = head;
+
+    //create a variable to store our String representation
+    String nodeStr = "";
+
+    //loop through the linkedlist until there are no nodes left
+    while (walker != null) {
+
+      //add the data from each node to the nodeString
+      nodeStr += walker.toString();
+
+      //move walker on to the next node
+      walker = walker.getNext();
+      
+      //System.out.println(walker.getData());
+    } 
+    
+    return nodeStr;
+
   }
+
+  
 
   /**
   returns the number of elements in the list
@@ -128,4 +164,5 @@ public class LinkedList{
   */
   public void remove(int index){
   }
+  
 }
