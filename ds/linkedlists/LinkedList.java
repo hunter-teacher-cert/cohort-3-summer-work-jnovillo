@@ -44,26 +44,21 @@ public class LinkedList{
   }
 
 // get() returns the string at the node in the specified index
-  public String get(int targetIndex){
+  public String get(int index){
 
     //create reference to help loop through list
     Node walker = head;
-    
-    //go in a loop through each node until we reach the target index
-    for(int i=0; i<=targetIndex && walker != null; i++ ){
-      
-      //if we have reached the target index
-      if (i == targetIndex){
-        //return the data from the target
+    int counter = 0;
+
+    while (walker != null){
+      if (counter == index){
         return walker.getData();
       }
-      
-      //if (walker.getNext() != null) 
+      counter++;
       walker = walker.getNext();
-      
     }
-    //return if we didn't find the target index
-    return "Value at index not found.";
+    return "The index " + index + " does not exist.";
+
   }
 
  // toString() returns a string version of the list
@@ -79,7 +74,7 @@ public class LinkedList{
     while (walker != null) {
 
       //add the data from each node to the nodeString
-      nodeStr += walker.toString();
+      nodeStr += walker;
 
       //move walker on to the next node
       walker = walker.getNext();
@@ -97,7 +92,17 @@ public class LinkedList{
   returns the number of elements in the list
   */
   public int size(){
-    return 0;
+    
+    //create reference to help loop through list
+    Node walker = head;
+    int counter = 0;
+
+    while (walker != null){
+      counter++;
+      walker = walker.getNext();
+    }
+    return counter;
+    
   }
 
 
@@ -119,7 +124,26 @@ public class LinkedList{
   */
   public void add(int index, String value){
 
-  }
+    // Special case when index is zero
+    if (index == 0){
+      // Call the method add we did it before
+      add(value);
+    } else { // Other cases != than zero
+      int counter = 0;
+      Node walker = head;
+  
+      while (walker != null){
+        if (counter == index - 1){
+          Node n = new Node(value, walker.getNext());
+          walker.setNext(n);
+          break;
+        }
+        counter++;
+        walker = walker.getNext();
+      }
+    }
+  
+ }
 
 
   /**
@@ -133,7 +157,20 @@ public class LinkedList{
 
   */
   public int indexOf(String value){
-    return 0;
+    //create reference to help loop through list
+    Node walker = head;
+    int counter = 0;
+
+    while (walker != null){
+      if (walker.getData() == value){
+        return counter;
+      }
+      counter++;
+      walker = walker.getNext();
+    }
+    //return "The index " + index + " does not exist.";
+    
+    return counter;
   }
 
 
@@ -146,7 +183,18 @@ public class LinkedList{
 
   */
   public String[] toArray(){
-    return null;
+
+    int len = size();
+    String[] array = new String[len];
+    Node walker = head;
+    
+    for (int i=0; i<len; i++){
+      array[i] = walker.getData();
+      walker = walker.getNext(); 
+    }
+    
+    return array;
+    
   }
 
 
@@ -163,6 +211,22 @@ public class LinkedList{
   "a"->"b"->"d"->"e"
   */
   public void remove(int index){
+    if (index == 0){
+      head = head.getNext();
+    } else if (index < 0 || index > size() -1){
+      System.out.println("Invalid index to remove: " + index);
+    }else {
+      Node walker = head;
+      int counter = 0;
+      while (walker != null){
+        if (counter == index - 1){
+          walker.setNext(walker.getNext().getNext());
+          break;
+        }
+        counter ++;
+        walker = walker.getNext();
+      }
+    }
   }
   
 }
