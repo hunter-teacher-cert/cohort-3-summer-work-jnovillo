@@ -1,6 +1,6 @@
 /**
  * Driver - Node - LinkedList
- * collaborators: Rachel Kaufman, Joel Bianchi, Latoya B, Jessica N
+ * collaborators: Jessica Novillo Argudo, Amanda Lee, Jerusha
  */
 
 import java.io.*;
@@ -9,20 +9,20 @@ import java.util.*;
 /**
 Basic
 -----
-+ add(string value)
-- get(int index);
-- toString()
++ add(string value) DONE
+- get(int index); DONE
+- toString() DONE
 
 Intermediate 
 ------------
 - size()
-- add(int index,String value)
-- indexOf(String value);
-- toArray()
+- add(int index,String value) DONE
+- indexOf(String value); DONE
+- toArray() DONE
 
 Challenge
 --------
-- remove(int index);
+- remove(int index); DONE
 */
 
 public class LinkedList{
@@ -211,11 +211,11 @@ public class LinkedList{
   "a"->"b"->"d"->"e"
   */
   public void remove(int index){
-    if (index == 0){
-      head = head.getNext();
-    } else if (index < 0 || index > size() -1){
+    if (index == 0){ // Special case when index is zero
+      head = head.getNext(); // head is now old head's next node
+    } else if (index < 0 || index > size() - 1){ // Case for invalid index to prevent any error
       System.out.println("Invalid index to remove: " + index);
-    }else {
+    }else { // All other cases do this
       Node walker = head;
       int counter = 0;
       while (walker != null){
