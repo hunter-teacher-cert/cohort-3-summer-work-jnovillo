@@ -108,7 +108,7 @@ public class SortSearch{
 
     */
     public void sort(){
-      // TODO: Create a for loop and put this code inside the loop
+      // Create a for loop and put thi
       int smallestIndex = findSmallestIndex(0);
       int temp = data.get(0);
       // data.set(index, value)
