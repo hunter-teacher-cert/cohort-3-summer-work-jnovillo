@@ -11,11 +11,11 @@ PROS:
 <general positive aspects of incorporating code or algorithm tracing into a CS course, from your perspective>
 
 - It allows us to undestand how the computer is going to process the algorithm.
-- Helps break down the steps, so that you can understand better what is happening in the code
+- Helps break down the steps, so that you can understand better what is happening in the code.
 - Helps you plan and diagram how you want to write your code
 - Helps you debug and identify where the error might be.
 - Helps teachers assess students' understanding of the code and computational thinking.
-- Verbalize thought process
+- Verbalize thought process.
 
 
 CONS:
