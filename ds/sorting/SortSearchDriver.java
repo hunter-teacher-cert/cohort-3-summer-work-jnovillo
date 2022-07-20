@@ -26,15 +26,33 @@ public class SortSearchDriver {
     System.out.println("Starting my search at -2");
 	  i = ss.findSmallestIndex(10);
 	
-	// Uncomment these to test part 3
+	// Part 3
+  
+  	System.out.println(ss);
+  	ss.sort();
+    System.out.println("Sorted array:");
+  	System.out.println(ss);
 
-	// System.out.println(ss);
-	// ss.sort();
-	// System.out.println(ss);
-	
+//we added a constructor to make a static sorted array, since it was annoying to have a bunch of random arrays 
+    SortSearch searchArray = new SortSearch();
+    System.out.println("Array used by search methods:");
+  	System.out.println(searchArray);
+      
+    // Test linearSearch
+    System.out.println("Element 5 is located at index (linearSearch): " + searchArray.linearSearch(5));
+      
+    // Test binarySearch
 
+    System.out.println("Element 2 is located at index (binarySearch): " + searchArray.binarySearch(2));
 
-	      
+    System.out.println("Element 10 is located at index (binarySearch): " + searchArray.binarySearch(10));
+      
+    System.out.println("Element 5 is located at index (binarySearch): " + searchArray.binarySearch(5));
 
+    System.out.println("Element 0 is located at index (binarySearch): " + searchArray.binarySearch(0));
+
+    System.out.println("Element 9 is located at index (binarySearch): " + searchArray.binarySearch(9));
+
+    System.out.println("Element 11 is located at index (binarySearch): " + searchArray.binarySearch(11));
     }
 }
