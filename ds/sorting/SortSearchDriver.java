@@ -7,7 +7,7 @@ public class SortSearchDriver {
 
 	// Part 1
 	
-	SortSearch ss = new SortSearch(10); // TODO: set this to 20
+	SortSearch ss = new SortSearch(20);
 	System.out.println("New Array: \n" + ss);
 		
 	// Part 2
@@ -21,10 +21,10 @@ public class SortSearchDriver {
 	 System.out.println("ss["+ i + "] = "+ss.get(i)+" : " + ss);
 
     // Test for invalid index
-    System.out.println("Starting my search at 10"); // TODO: set this to 20
-	  i = ss.findSmallestIndex(10);
+    System.out.println("Starting my search at 20"); 
+	  i = ss.findSmallestIndex(20);
     System.out.println("Starting my search at -2");
-	  i = ss.findSmallestIndex(10);
+	  i = ss.findSmallestIndex(-2);
 	
 	// Part 3
   
@@ -35,14 +35,19 @@ public class SortSearchDriver {
 
 //we added a constructor to make a static sorted array, since it was annoying to have a bunch of random arrays 
     SortSearch searchArray = new SortSearch();
-    System.out.println("Array used by search methods:");
+
+    System.out.println("\nArray used by search methods:");
   	System.out.println(searchArray);
       
     // Test linearSearch
+      
+    System.out.println("\n*** LINEAR SEARCH ***");
     System.out.println("Element 5 is located at index (linearSearch): " + searchArray.linearSearch(5));
       
     // Test binarySearch
 
+    System.out.println("\n*** BINARY SEARCH ***");
+      
     System.out.println("Element 2 is located at index (binarySearch): " + searchArray.binarySearch(2));
 
     System.out.println("Element 10 is located at index (binarySearch): " + searchArray.binarySearch(10));
@@ -54,5 +59,16 @@ public class SortSearchDriver {
     System.out.println("Element 9 is located at index (binarySearch): " + searchArray.binarySearch(9));
 
     System.out.println("Element 11 is located at index (binarySearch): " + searchArray.binarySearch(11));
+
+      // Test recursive method
+
+      System.out.println("\n*** RECURSIVE BINARY SEARCH ***");
+      int searchArraySize = searchArray.getSize();
+      System.out.println("Element 5 is located at index (binarySearchR): " + searchArray.binarySearchRecursive(5, 0, searchArraySize - 1));
+      System.out.println("Element 0 is located at index (binarySearchR): " + searchArray.binarySearchRecursive(0, 0, searchArraySize - 1));
+      System.out.println("Element 10 is located at index (binarySearchR): " + searchArray.binarySearchRecursive(10, 0, searchArraySize - 1));
+      System.out.println("Element 9 is located at index (binarySearchR): " + searchArray.binarySearchRecursive(9, 0, searchArraySize - 1));
+      System.out.println("Element 15 is located at index (binarySearchR): " + searchArray.binarySearchRecursive(15, 0, searchArraySize - 1));
+      
     }
 }

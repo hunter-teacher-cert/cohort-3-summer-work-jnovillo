@@ -22,8 +22,8 @@ Part 1:  (BASIC)
 
 Search Project:
   1. Complete the linear search (BASIC) DONE
-  2. Complete the binary search (Intermediate)
-  3. Complete the recursive version of binary search (Advanced)
+  2. Complete the binary search (Intermediate) DONE
+  3. Complete the recursive version of binary search (Advanced) DONE
 */
 
 public class SortSearch{
@@ -160,10 +160,9 @@ public class SortSearch{
 
       int lowIndex = 0;
       int highIndex = data.size() - 1;
-      int middleIndex = data.size()/ 2;//-1 one here?
+      int middleIndex = data.size()/ 2;
 
       while (lowIndex <= highIndex){
-
         if (value == data.get(middleIndex)){
           return middleIndex;
         } else if (value > data.get(middleIndex)) {
@@ -173,8 +172,6 @@ public class SortSearch{
           	highIndex = middleIndex - 1;
           	middleIndex = (highIndex + lowIndex) / 2;
         }
-        // to test
-        System.out.println("index" + lowIndex + " " + middleIndex + " " + highIndex);
       }
 	    return -1;
 	    
@@ -188,13 +185,25 @@ public class SortSearch{
 
     public int binarySearchRecursive(int value, int lowIndex, int highIndex){
 
-	// refer to class discussion
-	
-	return 0;
-	    
+      if(highIndex >= lowIndex){
+        int middleIndex = (lowIndex + highIndex) / 2;
+        if (value == data.get(middleIndex)){
+          return middleIndex;
+        }else if (value > data.get(middleIndex)) {
+          lowIndex = middleIndex + 1;
+          return binarySearchRecursive(value, lowIndex, highIndex);
+        }else if (value < data.get(middleIndex)) {
+          highIndex = middleIndex - 1;
+          return binarySearchRecursive(value, lowIndex, highIndex);
+        }
+      }
+      return -1;
     }
-    
-	
+
+  public int getSize(){
+    return data.size();
+  }
+  
     public String toString(){
 	return ""+data;
     };
