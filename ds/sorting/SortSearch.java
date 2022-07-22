@@ -44,7 +44,9 @@ public class SortSearch{
     // 	}
 	
     // }
-//Put this is to have a static array to test binary search
+  
+    // We modified this constructor to have a static array 
+    // to test binary search
      public SortSearch(){
        data = new ArrayList<Integer>( Arrays.asList(new Integer[] { 0,1,2,3,4,5,6,7,8,9,10 } ) );
 	
